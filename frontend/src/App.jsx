@@ -1,21 +1,32 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { supabase } from './lib/supabase'
 
 function App() {
+  const [transactions, setTransactions] = useState([])
 
   useEffect(() => {
-    getData()
+    getTransactions()
   }, [])
 
-  async function getData() {
-    const { data, error } = await supabase
+  async function getTransactions() {
+    const { data } = await supabase
       .from('transactions')
       .select('*')
 
-    console.log(data, error)
+    setTransactions(data)
   }
 
-  return <h1>Finanzas App</h1>
+  return (
+    <div>
+      <h1>Transacciones</h1>
+
+      {transactions.map((t) => (
+        <div key={t.id}>
+          {t.tipo} - {t.monto}
+        </div>
+      ))}
+    </div>
+  )
 }
 
 export default App
