@@ -1,5 +1,5 @@
 import { useState } from "react";
-//import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function App() {
   const [page, setPage] = useState("home");
@@ -45,7 +45,7 @@ export default function App() {
 
 function Section({ title, children }) {
   return (
-    <div
+    <motion.div
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7 }}
@@ -55,7 +55,7 @@ function Section({ title, children }) {
       <div className="text-gray-300 leading-relaxed space-y-4 text-lg">
         {children}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -168,7 +168,7 @@ function Investments() {
 
 function Login() {
   return (
-    <div
+    <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       className="max-w-md mx-auto bg-white/5 p-8 rounded-2xl backdrop-blur-xl shadow-xl"
@@ -179,6 +179,6 @@ function Login() {
       <button className="w-full py-3 bg-white text-black rounded-xl hover:scale-105 transition">
         Entrar
       </button>
-    </div>
+    </motion.div>
   );
 }
